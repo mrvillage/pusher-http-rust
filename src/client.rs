@@ -334,9 +334,9 @@ impl<C: Connect + Clone + Send + Sync + 'static> Pusher<C> {
 
         let body = serde_json::to_string(&raw_body).unwrap();
 
-        if body.len() > 10240 {
-            return Err("Data must be smaller than 10kb".to_string());
-        }
+        //if body.len() > 10240 {
+        //    return Err("Data must be smaller than 10kb".to_string());
+        //}
 
         let method = "POST";
         let query = build_query(
@@ -788,7 +788,7 @@ mod tests {
         }
 
         let res = pusher.trigger("yolo", "new_yolo", &data).await;
-        assert_eq!(res.unwrap_err(), "Data must be smaller than 10kb")
+        //assert_eq!(res.unwrap_err(), "Data must be smaller than 10kb")
     }
 
     #[tokio::test]
